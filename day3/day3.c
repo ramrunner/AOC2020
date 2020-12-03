@@ -94,8 +94,6 @@ travel(char inmap[MAXSZ][MAXSZ], struct dim din, int right, int down, int steps)
 	int step = 0;
 	int trees = 0;
 	for (step = 0; step <steps; step++) {
-		printmap(s1,din);
-		printf("===%d===\n", step);
 		shift_all_rows(s1, s2, din, right);
 		clearmap(s1);
 		transpose(s2, din, s1, &dtrans);
@@ -118,12 +116,11 @@ main(int argc, char *argv[])
 	struct dim md, tmd;
 	md = readfile(argv[1], inmap);
 	printf("read in a matrix of %d rows %d columns\n", md.r, md.c);
-/*
 	travel(inmap, md, 1, 1, md.r-1);
 	travel(inmap, md, 3, 1, md.r-1);
 	travel(inmap, md, 5, 1, md.r-1);
 	travel(inmap, md, 7, 1, md.r-1);
-*/
+	/* travelling for r.c-1 / down steps */
 	travel(inmap, md, 1, 2, (md.r-1)/2);
 	return 0;
 }
